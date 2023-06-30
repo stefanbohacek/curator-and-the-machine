@@ -1,0 +1,30 @@
+<!--
+<section class="hero-image">
+  <img src="{{background_image_url}}">
+</section>
+-->
+<script>var curator = '{{curator}}'</script>
+<section class="app mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 id="greeting"><a href="/" class="text-decoration-none">Curator and the machine</a></h1>
+            <div id="art-wrapper">
+              <canvas id="art" width="400" height="400"></canvas>
+            </div>
+          </div>
+          <div class="col-sm-12 buttons mt-4 mb-5">
+            <button class="btn btn-secondary" id="btn-curate" disabled>Curate</button>
+            <button class="btn btn-light" id="btn-clear">Clear</button>
+            <button class="btn btn-link d-none" id="btn-logout">Log out</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <div id="feed" class="mt-0 mb-5"></div>
+      </div>
+    </div>
+  </div>
+</section>
