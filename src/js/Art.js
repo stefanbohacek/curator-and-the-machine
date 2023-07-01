@@ -34,10 +34,20 @@ class Art {
     clearInterval(this.artTick);
   }
 
-  clearArt() {
+  disableButtons() {
     this.btnCurate.disabled = true;
+    this.btnClear.disabled = true;
+  }
+
+  enableButtons() {
+    this.btnCurate.disabled = false;
+    this.btnClear.disabled = false;
+  }
+
+  clearArt() {
+    this.disableButtons();
     setTimeout(() => {
-      this.btnCurate.disabled = false;
+      this.enableButtons();
     }, 1000);
     
     let canvas = this.element,
@@ -63,7 +73,7 @@ class Art {
       this.clearArt();
       
       setTimeout(() => {
-        this.btnCurate.disabled = false;
+        this.enableButtons();
       }, 1000);
 
       ctx.strokeStyle = color;
@@ -160,10 +170,7 @@ class Art {
 
   async shareArt() {
     this.pauseArt();
-    this.btnClear.disabled = true;
-    this.btnCurate.disabled = true;
-
-    const curator = "anonymous";
+    this.disableButtons();
 
     const art = this.element;
     const dataURL = art.toDataURL();
@@ -212,7 +219,7 @@ class Art {
         );
     }
 
-    this.btnCurate.disabled = false;
+    this.enableButtons();
     this.clearArt();
     this.showArt();
   }
