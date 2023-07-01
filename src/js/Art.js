@@ -45,6 +45,7 @@ class Art {
   }
 
   clearArt() {
+    this.disableButtons();
     setTimeout(() => {
       this.enableButtons();
     }, 1000);

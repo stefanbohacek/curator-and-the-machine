@@ -60,6 +60,7 @@ var Art = /*#__PURE__*/function () {
     key: "clearArt",
     value: function clearArt() {
       var _this2 = this;
+      this.disableButtons();
       setTimeout(function () {
         _this2.enableButtons();
       }, 1000);
