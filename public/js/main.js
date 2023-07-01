@@ -45,12 +45,23 @@ var Art = /*#__PURE__*/function () {
       clearInterval(this.artTick);
     }
   }, {
+    key: "disableButtons",
+    value: function disableButtons() {
+      this.btnCurate.disabled = true;
+      this.btnClear.disabled = true;
+    }
+  }, {
+    key: "enableButtons",
+    value: function enableButtons() {
+      this.btnCurate.disabled = false;
+      this.btnClear.disabled = false;
+    }
+  }, {
     key: "clearArt",
     value: function clearArt() {
       var _this2 = this;
-      this.btnCurate.disabled = true;
       setTimeout(function () {
-        _this2.btnCurate.disabled = false;
+        _this2.enableButtons();
       }, 1000);
       var canvas = this.element,
         palette = this.palette,
@@ -73,7 +84,7 @@ var Art = /*#__PURE__*/function () {
         var height = this.height;
         this.clearArt();
         setTimeout(function () {
-          _this3.btnCurate.disabled = false;
+          _this3.enableButtons();
         }, 1000);
         ctx.strokeStyle = color;
         ctx.fillStyle = (0, _shadeColor["default"])(color, 0.95);
@@ -145,19 +156,17 @@ var Art = /*#__PURE__*/function () {
     key: "shareArt",
     value: function () {
       var _shareArt = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var curator, art, dataURL, imgData, disablePostBtn, response, responseJSON, html;
+        var art, dataURL, imgData, disablePostBtn, response, responseJSON, html;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               this.pauseArt();
-              this.btnClear.disabled = true;
-              this.btnCurate.disabled = true;
-              curator = "anonymous";
+              this.disableButtons();
               art = this.element;
               dataURL = art.toDataURL();
               imgData = dataURL.replace(/^data:image\/\w+;base64,/, "");
               disablePostBtn = this.disablePostBtn;
-              _context.next = 10;
+              _context.next = 8;
               return fetch("/art", {
                 method: "POST",
                 headers: {
@@ -171,11 +180,11 @@ var Art = /*#__PURE__*/function () {
                   username: window.username
                 })
               });
-            case 10:
+            case 8:
               response = _context.sent;
-              _context.next = 13;
+              _context.next = 11;
               return response.json();
-            case 13:
+            case 11:
               responseJSON = _context.sent;
               console.log(responseJSON);
               if (responseJSON && responseJSON.data.url) {
@@ -183,10 +192,10 @@ var Art = /*#__PURE__*/function () {
                 console.log(html);
                 document.getElementById("feed").insertAdjacentHTML("afterbegin", html + '<script src="https://botsin.space/embed.js" async="async"></script>');
               }
-              this.btnCurate.disabled = false;
+              this.enableButtons();
               this.clearArt();
               this.showArt();
-            case 19:
+            case 17:
             case "end":
               return _context.stop();
           }
