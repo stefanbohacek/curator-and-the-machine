@@ -2,7 +2,15 @@ import getServerPlatform from "./getServerPlatform.js";
 import getUrlParams from "./getUrlParams.js";
 
 const handleLogin = () => {
-  let { instance, token, username } = getUrlParams(true);
+  let { instance, token, username, error } = getUrlParams(true);
+
+  if (error) {
+    switch (error) {
+      case "platform_not_supported":
+        alert("Sorry, this platform is not yet supported.");
+        break;
+    }
+  }
 
   if (instance && token) {
     localStorage.setItem("fediUserToken", token);
@@ -12,13 +20,10 @@ const handleLogin = () => {
   if (username) {
     localStorage.setItem("fediUsername", username);
   }
-  
+
   window.token = localStorage.getItem("fediUserToken");
   window.instance = localStorage.getItem("fediUserInstance");
   window.username = localStorage.getItem("fediUsername");
-  
-  
-  
 
   const loginForm = document.getElementById("login");
   const loginBtn = document.getElementById("btn-login");
@@ -26,7 +31,7 @@ const handleLogin = () => {
   const serverInputField = document.getElementById("server");
 
   if (window.token && window.instance) {
-    if (logoutBtn){
+    if (logoutBtn) {
       logoutBtn.classList.remove("d-none");
 
       logoutBtn.addEventListener("click", async (ev) => {
@@ -48,38 +53,19 @@ const handleLogin = () => {
       const fediverseServer = serverInputField.value;
       const platform = await getServerPlatform(fediverseServer);
 
-      let platformSupported = false;
       let authRedirectURL;
 
-      switch (platform) {
-        case "mastodon":
-        case "hometown":
-        case "friendica":
-        case "pleroma":
-        case "akkoma":
-          platformSupported = true;
-          authRedirectURL = `https://auth.stefanbohacek.dev/?method=oauth&instance=${fediverseServer}&scope=read:accounts&app=creator-and-the-machine`;
-          break;
-        case "misskey":
-        case "calckey":
-        case "foundkey":
-        case "magnetar":
-          platformSupported = true;
-          authRedirectURL = `https://auth.stefanbohacek.dev/?method=miauth&instance=${fediverseServer}&scope=read:account&app=creator-and-the-machine`;
-          break;
-        default:
-          alert("Sorry, this platform is not yet supported.");
-          serverInputField.disabled = false;
-          loginBtn.disabled = false;
-          break;
-      }
-
-      if (platformSupported) {
+      if (platform) {
+        authRedirectURL = `https://auth.stefanbohacek.dev/?method=fediverse&instance=${fediverseServer}&scope=read:accounts&app=creator-and-the-machine`;
         localStorage.setItem("fediPlatform", platform);
         window.platform = platform;
 
         loginBtn.innerHTML = "Loading...";
         window.location.href = authRedirectURL;
+      } else {
+        alert("Sorry, this platform is not yet supported.");
+        serverInputField.disabled = false;
+        loginBtn.disabled = false;
       }
 
       return false;
