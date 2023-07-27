@@ -54,6 +54,7 @@ class MastodonClient {
 
       case "misskey":
       case "calckey":
+      case "firefish":
       case "foundkey":
       case "magnetar":
         data = {

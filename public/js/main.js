@@ -318,7 +318,15 @@ var handleLogin = function handleLogin() {
   var _getUrlParams = (0, _getUrlParams2["default"])(true),
     instance = _getUrlParams.instance,
     token = _getUrlParams.token,
-    username = _getUrlParams.username;
+    username = _getUrlParams.username,
+    error = _getUrlParams.error;
+  if (error) {
+    switch (error) {
+      case "platform_not_supported":
+        alert("Sorry, this platform is not yet supported.");
+        break;
+    }
+  }
   if (instance && token) {
     localStorage.setItem("fediUserToken", token);
     localStorage.setItem("fediUserInstance", instance);
@@ -360,7 +368,7 @@ var handleLogin = function handleLogin() {
   if (loginForm) {
     loginForm.addEventListener("submit", /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(ev) {
-        var fediverseServer, platform, platformSupported, authRedirectURL;
+        var fediverseServer, platform, authRedirectURL;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
@@ -372,32 +380,19 @@ var handleLogin = function handleLogin() {
               return (0, _getServerPlatform["default"])(fediverseServer);
             case 6:
               platform = _context2.sent;
-              platformSupported = false;
-              _context2.t0 = platform;
-              _context2.next = _context2.t0 === "mastodon" ? 11 : _context2.t0 === "hometown" ? 11 : _context2.t0 === "friendica" ? 11 : _context2.t0 === "pleroma" ? 11 : _context2.t0 === "akkoma" ? 11 : _context2.t0 === "misskey" ? 14 : _context2.t0 === "calckey" ? 14 : _context2.t0 === "foundkey" ? 14 : _context2.t0 === "magnetar" ? 14 : 17;
-              break;
-            case 11:
-              platformSupported = true;
-              authRedirectURL = "https://auth.stefanbohacek.dev/?method=oauth&instance=".concat(fediverseServer, "&scope=read:accounts&app=creator-and-the-machine");
-              return _context2.abrupt("break", 21);
-            case 14:
-              platformSupported = true;
-              authRedirectURL = "https://auth.stefanbohacek.dev/?method=miauth&instance=".concat(fediverseServer, "&scope=read:account&app=creator-and-the-machine");
-              return _context2.abrupt("break", 21);
-            case 17:
-              alert("Sorry, this platform is not yet supported.");
-              serverInputField.disabled = false;
-              loginBtn.disabled = false;
-              return _context2.abrupt("break", 21);
-            case 21:
-              if (platformSupported) {
+              if (platform) {
+                authRedirectURL = "https://auth.stefanbohacek.dev/?method=fediverse&instance=".concat(fediverseServer, "&scope=read:accounts&app=creator-and-the-machine");
                 localStorage.setItem("fediPlatform", platform);
                 window.platform = platform;
                 loginBtn.innerHTML = "Loading...";
                 window.location.href = authRedirectURL;
+              } else {
+                alert("Sorry, this platform is not yet supported.");
+                serverInputField.disabled = false;
+                loginBtn.disabled = false;
               }
               return _context2.abrupt("return", false);
-            case 23:
+            case 9:
             case "end":
               return _context2.stop();
           }
