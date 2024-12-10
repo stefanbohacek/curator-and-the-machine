@@ -2,7 +2,7 @@ const loadFeed = (fn) => {
   const feed = document.getElementById("feed");
 
   if (feed) {
-    const feedURL = `https://botsin.space/@curator_machine.rss`;
+    const feedURL = `https://stefanbohacek.online/@curator_machine.rss`;
 
     fetch(feedURL)
       .then((response) => response.text())
@@ -33,7 +33,7 @@ const loadFeed = (fn) => {
             .insertAdjacentHTML(
               "beforeend",
               html +
-                '<script src="https://botsin.space/embed.js" async="async"></script>'
+                '<script src="https://stefanbohacek.online/embed.js" async="async"></script>'
             );
         }
       });

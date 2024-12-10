@@ -215,7 +215,7 @@ class Art {
         .insertAdjacentHTML(
           "afterbegin",
           html +
-            '<script src="https://botsin.space/embed.js" async="async"></script>'
+            '<script src="https://stefanbohacek.online/embed.js" async="async"></script>'
         );
     }
 

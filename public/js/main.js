@@ -191,7 +191,7 @@ var Art = /*#__PURE__*/function () {
               if (responseJSON && responseJSON.data.url) {
                 html = "\n      <div class=\"embed-responsive embed-responsive-1by1\">\n          <iframe\n            src=\"".concat(responseJSON.data.url, "/embed\"\n            class=\"mastodon-embed embed-responsive-item\"\n            style=\"max-width: 100%; border: 0\"\n            width=\"500\"\n            height=\"640\"\n            allowfullscreen=\"allowfullscreen\"\n          ></iframe>\n      </div>            \n      ");
                 console.log(html);
-                document.getElementById("feed").insertAdjacentHTML("afterbegin", html + '<script src="https://botsin.space/embed.js" async="async"></script>');
+                document.getElementById("feed").insertAdjacentHTML("afterbegin", html + '<script src="https://stefanbohacek.online/embed.js" async="async"></script>');
               }
               this.enableButtons();
               this.clearArt();
@@ -423,7 +423,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var loadFeed = function loadFeed(fn) {
   var feed = document.getElementById("feed");
   if (feed) {
-    var feedURL = "https://botsin.space/@curator_machine.rss";
+    var feedURL = "https://stefanbohacek.online/@curator_machine.rss";
     fetch(feedURL).then(function (response) {
       return response.text();
     }).then(function (str) {
@@ -437,7 +437,7 @@ var loadFeed = function loadFeed(fn) {
           html += "\n            <div class=\"embed-responsive embed-responsive-1by1\">\n                <iframe\n                  src=\"".concat(el.querySelector("link").innerHTML, "/embed\"\n                  class=\"mastodon-embed embed-responsive-item\"\n                  style=\"max-width: 100%; border: 0\"\n                  width=\"500\"\n                  height=\"640\"\n                  allowfullscreen=\"allowfullscreen\"\n                ></iframe>\n            </div>            \n        ");
         });
         console.log(html);
-        document.getElementById("feed").insertAdjacentHTML("beforeend", html + '<script src="https://botsin.space/embed.js" async="async"></script>');
+        document.getElementById("feed").insertAdjacentHTML("beforeend", html + '<script src="https://stefanbohacek.online/embed.js" async="async"></script>');
       }
     });
   }
