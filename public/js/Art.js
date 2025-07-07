@@ -4,7 +4,7 @@ import getRandomInt from "./getRandomInt.js";
 
 const palette = ["#D89CA9", "#1962A0", "#F1ECD7", "#E8C051", "#1A1C23"];
 
-class Art {
+export default class Art {
   constructor(element) {
     this.element = element;
     this.palette = palette;
@@ -225,4 +225,3 @@ class Art {
   }
 }
 
-module.exports = Art;
