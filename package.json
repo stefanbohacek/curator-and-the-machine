@@ -1,7 +1,7 @@
 {
-  "name": "glitch-hello-node",
-  "version": "0.1.0",
-  "description": "A simple Node app built on fastify, instantly up and running. Built to be remixed on Glitch.com.",
+  "name": "curator-and-the-machine",
+  "version": "0.2.0",
+  "description": "Curating a computer.",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -32,7 +32,7 @@
     ]
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/glitch-hello-node"
+    "url": "https://github.com/stefanbohacek/curator-and-the-machine"
   },
   "license": "MIT",
   "keywords": [

@@ -1,14 +1,12 @@
 # Curator and the Machine
 
-![The main interface of Curator and the Machine](https://cdn.glitch.global/0785396d-7095-444b-8ac9-e01332c2e704/curator-and-the-machine.png?v=1688134742935)
+![The main interface of Curator and the Machine](curator-and-the-machine.png)
 ## About
 
 This project explores ideas of creativity and authorship. The interface lets you curate the output of a random generative art script and share it via the [@curator_machine](https://stefanbohacek.online/@curator_machine) Mastodon bot.
 
 
 ## Development
-
-*Curator and the Machine* was built with [node.js](https://nodejs.org/) and is hosted on [Glitch](https://glitch.com/).
 
 If you'd like to make your own version, note that the fediverse login requires its own [authentication server](https://github.com/stefanbohacek/auth-server).
 
