@@ -10,6 +10,6 @@ io.on("connection", (socket) => {
   console.log("a user connected");
 });
 
-server.listen(process.env.PORT, () => {
-  console.log(`app is running on port ${process.env.PORT}...`);
+server.listen(3000, () => {
+  console.log(`app is running on port 3000...`);
 });

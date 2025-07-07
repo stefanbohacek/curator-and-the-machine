@@ -1,7 +1,7 @@
 import fs from "fs";
 import request from "request";
 import fetch from 'node-fetch';
-import getRandomInt from "./src/js/getRandomInt.js";
+import getRandomInt from "./public/js/getRandomInt.js";
 import Mastodon from "mastodon-api";
 
 import path from "path";

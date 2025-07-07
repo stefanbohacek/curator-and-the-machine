@@ -1,5 +1,5 @@
 import MastodonClient from "../mastodon.js";
-import randomFromArray from "../src/js/randomFromArray.js";
+import randomFromArray from "../public/js/randomFromArray.js";
 import express from "express";
 const router = express.Router();
 
